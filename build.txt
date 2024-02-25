@@ -1,0 +1,3 @@
+docker build -t pg-desafio .
+
+docker run --name desafio -p 5432:5432 -d pg-desafio
