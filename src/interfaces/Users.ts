@@ -3,7 +3,7 @@ export type User = {
     name: string;
     is_admin: number;
     login: string;
-    password?: string;
+    password: string;
     work_regime: number;
     created_at?: Date;
     updated_at?: Date;

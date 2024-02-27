@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { LoginService } from "../services/Users/LoginService";
 import CreateUserService from "../services/Users/CreateUserService";
+import FindAllUsersService from "../services/Users/FindAllUsersService";
 
 export class UserController {
     public async login(req: Request, res: Response) {
@@ -16,6 +17,18 @@ export class UserController {
             return res.status(400).json({
                 data: null, message: 'Usuário ou senha incorretos',
                 stack: error, err: (error as Error).message
+            });
+        }
+    }
+    public async findAll(req: Request, res: Response){
+        try{
+            const service = new FindAllUsersService();
+            const result = await service.handler();
+            return res.status(200).json({ data: result, message: 'Usuários encontrados com sucesso!' });
+        }catch(err){
+            return res.status(400).json({
+                data: null, message: 'Erro ao buscar os usuários',
+                stack: err, err: (err as Error).message
             });
         }
     }

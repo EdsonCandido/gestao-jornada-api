@@ -1,6 +1,7 @@
 import { Knex } from "knex";
 import { connPG } from "../../config/database";
 import { User } from "../../interfaces/Users";
+import { hash } from "bcryptjs";
 
 class CreateUserService{
     private repository: Knex<any, unknown[]>;
@@ -21,8 +22,15 @@ class CreateUserService{
     public async handler({name, login, password, work_regime, is_admin }: Omit<User, 'id'>): Promise<Omit<User, 'password'>>{
         const created_at = new Date();
         const updated_at = created_at;
-        const user:User = await this.repository('users').insert({name, login, password, work_regime, is_admin, created_at, updated_at}).returning('*').first();
-        return user;
+        const hashPassword = await hash(password, 8)
+        const user:any[] | User[] = await this.repository('users')
+        .insert({name, login, password: hashPassword, work_regime, is_admin,
+             created_at, updated_at}).returning('*');
+
+             if(user.length < 1) throw new Error("Erro ao criar o usuário");
+             
+             delete user[0].password
+        return user[0];
         
     }
     

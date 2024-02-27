@@ -5,7 +5,9 @@ const userRoutes = Router();
 
 const userController = new UserController();
 userRoutes.post('/session', userController.login);
-userRoutes.post('/users/create', userController.create);
+
+userRoutes.get('/users/', userController.findAll);
+userRoutes.post('/users/', userController.create);
 // userRoutes.put('/users/update', userController.update);   
 
 export default userRoutes;
