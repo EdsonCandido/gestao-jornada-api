@@ -72,7 +72,7 @@ INSERT INTO users ("name",is_admin,login,"password",work_regime,created_at,updat
 ####  diagrama de entidade/relacionamento (DER)
 ![DER](https://raw.githubusercontent.com/EdsonCandido/gestao-jornada-api/main/der/der.png)
 
-Para ter acesso a aplicação, o usuário é  usuario e a senha é 1234567890
+Para ter acesso a aplicação, o usuário é *usuario* e a senha é *1234567890*
 
 ## Authors
 
