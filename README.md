@@ -30,7 +30,14 @@ npm run build
 ### Customize configuration
  * O sistema terá que contar com o [frontend](https://github.com/EdsonCandido/gestao-jornada-frontend) em execução.
 
-* Deverá ter uma instancia do postgres sendo executada, tem um arquivo onde se tem uma image docker configurada previamente.
+* Deverá ter uma instancia do postgres sendo executada
+
+```console
+foo@bar:~$ docker build -t pg-desafio .
+```
+```console
+foo@bar:~$ docker run --name desafio -p 5432:5432 -d pg-desafio
+```
 
 Ao acessar o postgres, deve-se rodar o seguinte script
 
@@ -64,6 +71,8 @@ INSERT INTO users ("name",is_admin,login,"password",work_regime,created_at,updat
 
 ####  diagrama de entidade/relacionamento (DER)
 ![DER](https://raw.githubusercontent.com/EdsonCandido/gestao-jornada-api/main/der/der.png)
+
+Para ter acesso a aplicação, o usuário é  usuario e a senha é 1234567890
 
 ## Authors
 
